@@ -1,11 +1,22 @@
-<p style="color: green"><%= notice %></p>
+<div id="posts-page" data-controller="content-loader posts" data-content-loader-url-value=<%= "/posts/more.html?post_id=#{@posts.last.id}" %> data-action="content-loader:load->posts#append">
+  <p style="color: green"><%= notice %></p>
 
-<h1>Posts</h1>
+  <h1>Posts</h1>
 
-<div id="posts">
-  <%= render partial: "post", collection: @posts %>
-</div>
+  <div data-controller="timer" style="margin-bottom:2em">
+    <label>Refresh timer</label>
+    <input value=1000 data-timer-target="input">
+  </div>
 
-<div style="margin-top:2em;">
-  <%= render "form", post: @post, parent_id: nil %>
+  <div id="posts" data-posts-target="posts">
+    <%= render partial: "post", collection: @posts %>
+  </div>
+
+  <div style="margin-top:2em;">
+    <%= render "form", post: @post, parent_id: nil %>
+  </div>
+
+  <div style="margin-top:2em">
+    <button data-action="content-loader#load" data-content-loader-action-param="posts#append">View more</button>
+  </div>
 </div>

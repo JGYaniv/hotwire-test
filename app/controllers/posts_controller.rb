@@ -3,7 +3,7 @@ class PostsController < ApplicationController
 
   # GET /posts or /posts.json
   def index
-    @posts = Post.where(parent_id: nil).includes(:children)
+    @posts = Post.where(parent_id: nil).order(:created_at, :desc).includes(:children).limit(10)
     @post = Post.new
   end
 
@@ -16,6 +16,11 @@ class PostsController < ApplicationController
   def respond
     @parent_id = params[:post_id]
     @post = Post.new
+  end
+
+  def more
+    @posts = Post.where(parent_id: nil).where("id > ?", params[:post_id]).order(:created_at, :desc).includes(:children).limit(10)
+    render partial: 'post', collection: @posts
   end
 
   # POST /posts or /posts.json
