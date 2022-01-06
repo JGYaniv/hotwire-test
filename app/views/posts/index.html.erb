@@ -1,0 +1,11 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Posts</h1>
+
+<div id="posts">
+  <%= render partial: "post", collection: @posts %>
+</div>
+
+<div style="margin-top:2em;">
+  <%= render "form", post: @post, parent_id: nil %>
+</div>

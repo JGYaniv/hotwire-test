@@ -1,0 +1,5 @@
+<turbo-frame id=<%= "post_#{@parent_id}_children" %>>
+  <div style="margin-left:2em;color:gray;">
+    <%= render partial: "post", collection: @posts %>
+  </div>
+</turbo-frame>

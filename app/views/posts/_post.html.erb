@@ -1,0 +1,18 @@
+<div id="<%= dom_id post %>">
+  <div>
+    <span>
+      <strong>
+        <%= post.created_at.strftime("%m/%d/%y %I:%M %P") %>:
+      </strong>
+    </span>
+    <span>
+      <%= post.body %>
+    </span>
+  </div>
+    <turbo-frame id=<%="post_#{post.id}_children"%>>
+      <%= link_to "Reply", post_respond_path(post.id)%>
+      <% if post.children.length > 0 %>
+        <%= link_to "Responses(#{post.children.length})", post_responses_path(post.id), { style: "margin-left:1em;" } %>  
+      <% end %>
+    </turbo-frame>
+</div>
